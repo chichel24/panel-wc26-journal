@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界杯信息导航 · 日常查询与说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f0e8;  /* 米白基调 */
+            font-family: 'Georgia', 'Times New Roman', 'Songti SC', serif;
+            color: #2e2a24;
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #fcf9f5;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            padding: 2.5rem 2rem 3rem;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid #ddd6cb;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+        .top-nav a {
+            color: #5f5549;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s ease;
+        }
+        .top-nav a:hover {
+            border-bottom-color: #b8a99a;
+        }
+
+        /* hero 区 */
+        .hero {
+            margin: 2.8rem 0 2.5rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #2b241d;
+            margin-bottom: 0.6rem;
+        }
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #72685c;
+            max-width: 600px;
+        }
+
+        /* 核心介绍 */
+        .intro-block {
+            background: #f3ede6;
+            padding: 1.8rem 2rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+            font-size: 1.02rem;
+            box-shadow: inset 0 0 0 1px #e4dbd0;
+        }
+        .intro-block p + p {
+            margin-top: 1rem;
+        }
+
+        /* 引用 / 提示框 */
+        .callout {
+            background: #eae3d9;
+            border-left: 4px solid #b8a99a;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0;
+            font-size: 0.98rem;
+            color: #3b342d;
+            border-radius: 0 4px 4px 0;
+        }
+        .callout strong {
+            font-weight: 600;
+            color: #2b241d;
+        }
+
+        /* 三个场景模块 */
+        .scenes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.8rem 0 2rem;
+        }
+        .scene-card {
+            flex: 1 1 220px;
+            background: #f8f4ee;
+            padding: 1.8rem 1.4rem 1.6rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            border: 1px solid #e7dfd4;
+        }
+        .scene-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #3b3229;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #4d443a;
+        }
+
+        /* 常见说明 (FAQ 摘要) */
+        .faq-summary {
+            margin: 2.8rem 0 1.5rem;
+            border-top: 1px solid #ddd6cb;
+            padding-top: 2.2rem;
+        }
+        .faq-summary h2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.6rem;
+            color: #2b241d;
+        }
+        .faq-item {
+            margin-bottom: 1.4rem;
+        }
+        .faq-item .q {
+            font-weight: 600;
+            color: #3f362e;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+        .faq-item .a {
+            color: #5b5247;
+            font-size: 0.95rem;
+            padding-left: 0.6rem;
+        }
+
+        /* 内联链接 */
+        a {
+            color: #7d6b58;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 0.5px;
+        }
+        a:hover {
+            color: #4d3c2b;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .page {
+                padding: 1.8rem 1.2rem 2.5rem;
+            }
+            .top-nav {
+                justify-content: center;
+                gap: 1.2rem;
+                font-size: 0.88rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+            .intro-block {
+                padding: 1.3rem 1.2rem;
+            }
+            .scenes {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .scene-card {
+                flex: 1 1 auto;
+            }
+            .callout {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0 10px;
+            }
+            .page {
+                padding: 1.5rem 0.8rem 2rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .faq-summary h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* 小装饰 */
+        .hr-soft {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd6cb, transparent);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <a href="#intro">介绍</a>
+        <a href="#scenes">场景</a>
+        <a href="#faq">说明</a>
+    </nav>
+
+    <!-- hero -->
+    <div class="hero">
+        <h1>世界杯 · 日常查询与对照</h1>
+        <div class="sub">关于赛事信息、历史纪录与延伸阅读的轻量导航，围绕一届比赛的碎片整理。</div>
+    </div>
+
+    <!-- 核心介绍 -->
+    <div class="intro-block" id="intro">
+        <p>四年一度的世界杯早已不只是绿茵场上的对抗，它也成为许多人生活中一条隐形的线索——从小组赛的深夜闹钟，到淘汰赛阶段的朋友圈刷屏，再到赛后的数据回顾与话题延伸。这个页面尝试从「日常查询、对照和延伸阅读」的角度，整理一些常被需要的信息入口，方便随手查阅。</p>
+        <p>如果你想更系统地了解过往赛事、球队沿革或当届预选赛进程，可以直接访问 <a href="https://panel-wc26.com">世界杯</a> 专题页面，那里汇集了更完整的资料与动态。下文也列出了几个常见的查询场景，以及一些基础说明。</p>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="callout">
+        <strong>一点说明：</strong> 以下内容基于公开赛事信息整理，不构成官方解读。具体赛程、规则或参赛名单请以国际足联（FIFA）或各足协官方发布为准。
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes" id="scenes">
+        <div class="scene-card">
+            <h3>赛程与对照</h3>
+            <p>小组赛阶段常有多场比赛同时进行，查询实时比分、积分榜以及对阵时间表是刚需。将官网或数据站加入书签，能在几分钟内完成对照，了解出线形势。</p>
+        </div>
+        <div class="scene-card">
+            <h3>历史纪录</h3>
+            <p>历届冠军、最佳射手、经典比赛回顾——这些数据在赛季间歇期尤其常被翻出。一个结构清晰的档案页面能节省大量搜索时间，也适合作为延伸阅读的起点。</p>
+        </div>
+        <div class="scene-card">
+            <h3>队伍与球员</h3>
+            <p>当一支黑马球队闯入淘汰赛，或者某位年轻球员表现抢眼，快速查找其过往战绩、出场记录和基本信息，能让观赛体验更完整。这也是许多球迷的日常习惯。</p>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-summary" id="faq">
+        <h2>常见说明</h2>
+
+        <div class="faq-item">
+            <div class="q">为什么同一个赛事有多个数据版本？</div>
+            <div class="a">不同统计机构（如 FIFA、Opta、Transfermarkt）的统计口径和更新时差略有差异，建议以官方发布或主流数据平台为准。查询时留意数据截止日期即可。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="q">哪里可以看到更完整的预选赛对阵？</div>
+            <div class="a">各大洲足联官网以及 FIFA 的赛程页面会同步预选赛表格。你也可以通过 <a href="https://panel-wc26.com">世界杯</a> 页面找到各阶段预选赛的汇总链接，方便跨洲对照。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="q">历史数据是否包含早期赛事？</div>
+            <div class="a">大部分公开数据库覆盖从 1930 年首届至今的历届世界杯数据。部分早期比赛的出场、进球纪录可能存在缺失，但在主要统计渠道中已有较完整的收录。</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="q">页面上的链接会定期更新吗？</div>
+            <div class="a">本导航页的指向内容会跟随赛季进程做必要调整，但作为轻量介绍页，它更多是提供索引方向。核心资料端通常由维护者保持同步。</div>
+        </div>
+    </div>
+
+    <div class="hr-soft"></div>
+
+    <!-- 结尾句子，自然包含链接 -->
+    <p style="font-size: 0.95rem; color: #72685c; text-align: center; margin-top: 1.2rem;">
+        如果你正在寻找一个更集中的资料入口，可以试试 <a href="https://panel-wc26.com">世界杯</a> 专题，那里整理了赛程、数据与延伸阅读的索引。
+    </p>
+
+    <!-- 留白 footer 感觉 -->
+    <div style="height: 0.8rem;"></div>
+</div>
+</body>
+</html>
